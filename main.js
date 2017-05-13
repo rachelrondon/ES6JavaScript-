@@ -453,3 +453,85 @@ var inProgress = requests.some(request => {
 })
 
 // What is the difference between every and some?
+
+// Every helper method
+  //  For every element in the array we will pass the iterator function and it will return a true or false.
+  //  We will take a boolean value from each element and then reduce it down to one boolean element as the result.
+
+
+// Some helper method
+  // There is an 'or' operator between any value
+  // Do any records in this array satisfy this criteria?
+
+
+
+// Reduce Helper Method
+  // One of the most flexible helper methods
+
+var number = [ 10, 20, 30 ];
+var sum = 0;
+
+for (var i = 0; i < numbers.length; i++) {
+  sum += numbers[i];
+}
+
+numbers.reduce(function(sum, number) {
+  return sum + number;
+}, 0);
+
+
+var primaryColors = [
+  { color: 'red' },
+  { color: 'yellow' },
+  { color: 'blue' }
+];
+
+primaryColors.reduce(function(previous, primaryColor) {
+  previous.push(primaryColor.color);
+
+  return previous;
+}, []);
+// reduce can be used to sum all of the numbers in an array
+// We pass in an initial value (0)
+// Sum and number are the arguments for the function
+
+
+// Coding Question:
+
+// Given a string that contain some number of parenthesis, are the expressions correctly balanced?
+// Write a function to check if the parenthesis is balanced.
+
+
+// We want a function that takes a string and returns a boolean
+
+// We are receiving a string
+function balancedParens(string) {
+  // string.split("") will turn the string into an array of single characters
+  // Then we will add in the reduce helper
+  // Char represents a single character
+
+  // To solve this, we will create a counter
+  // ! is a flip of boolean
+  return !string.split("").reduce(function(previous, char) {
+    if (previous < 0) { return previous; }
+    // if the character is an open parathesis return ++previous
+     if (char === "(") { return ++previous; }
+     // if the character is a closing parathesis return --previous
+     if (char === ")") { return --previous; }
+     return previous;
+  }, 0);
+}
+
+balancedParens("((((");
+
+
+// Question 13: Distance Traveled
+  // Use the 'reduce' helper to find the sum of all the distances traveled.
+  // Assign the result to the variable 'totalDistance'
+  var trips = [{ distance: 34 }, { distance: 12}, { distance: 1 }];
+
+  var totalDistance = trips.reduce(function(previous, trip) {
+      return previous + trip.distance;
+  }, 0);
+
+  totalDistance;
