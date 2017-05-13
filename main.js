@@ -1,6 +1,6 @@
 // forEach practice
 
-// Question One: Processing Values
+// Question 1: Processing Values
 
 var images = [
   { height: 10, width: 30},
@@ -51,7 +51,7 @@ var prices = cars.map(function(car) {
 prices;
 
 
-// Question Two: Plucking Values
+// Question 2: Plucking Values
 
 var images = [
   { height: '34px', width: '39px' },
@@ -65,7 +65,7 @@ var heights = images.map(function(image) {
 
 var heights;
 
-//  Question Three: Calculating Values with Map
+//  Question 3: Calculating Values with Map
 
 
 var trips = [
@@ -80,7 +80,7 @@ var speeds = trips.map(function(trip) {
 
 var speeds;
 
-// Question Four: Really Hard - Implementing 'Pluck'
+// Question 4: Really Hard - Implementing 'Pluck'
 
 var paints = [ { color: 'red' }, { color: 'blue' }, { color: 'yellow' }];
 
@@ -159,7 +159,7 @@ function commentsForPost(post, comments) {
 
 commentsForPost(post, comments);
 
-// Question Five: Filtering Values
+// Question 5: Filtering Values
 
 var numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95];
 
@@ -301,3 +301,155 @@ var admin = users.find(user => {
 });
 
 admin;
+
+// Question 9: What's Your Balance
+// Find the account with a balance of 12 and assign it to the variable 'account'.
+var accounts = [
+  { balance: - 10},
+  { balance: 12 },
+  { balance: 0 }
+];
+
+var account = accounts.find(account => {
+  return account.balance === 12;
+});
+
+account;
+
+// Question 10: Custom findwhere Helper
+
+
+var ladders = [
+  { id: 1, height: 20 },
+  { id: 3, height: 25 }
+];
+
+function findWhere(array, criteria) {
+  var property = Object.keys(criteria)[0];
+
+  return array.find(ladder => {
+    return ladder[property] === criteria[property];
+  });
+}
+
+findWhere(ladders, { height: 25 });
+
+
+// Every & Some Helper Methods
+
+var computers = [
+  { name: 'Apple', ram: 24},
+  { name: 'Compaq', ram: 4},
+  { name: 'Acer', ram: 32 }
+];
+
+// Here the question is solved with a for loop
+var allComputersCanRunProgram = true;
+var onlySomeComputersCanRunProgram = false;
+
+for (var i = 0; i < computers.length; i++) {
+  var computer = computers[i];
+
+  if (computer.ram < 16 ) {
+    allComputersCanRunProgram = false;
+  } else {
+    onlySomeComputersCanRunProgram = true;
+  }
+}
+
+"---"
+allComputersCanRunProgram;
+onlySomeComputersCanRunProgram;
+
+
+// Every Helper Method
+// Look at all of the values being returned
+computers.every(function(computer) {
+  return computer.ram > 16;
+  // this will return false
+});
+
+// Some Helper Method
+// There is an 'or' value between all of the operators
+
+computers.some(function(computer) {
+  return computer.ram > 16;
+});
+
+
+// Another Example:
+
+var names = [
+  'Alexandria',
+  'Matthew',
+  'Joe'
+];
+
+names.every(function(name) {
+  return name.length > 4;
+  // this will return false
+});
+
+names.some(function(name) {
+  return name.length > 4;
+});
+
+// Example:
+
+function Field(value) {
+  this.value = value;
+}
+
+
+Field.prototype.validate = function() {
+  return this.value.length > 0;
+}
+
+var username = new Field('2cool');
+var password = new Field('my_password');
+var birthdate = new Field('10/10/2010');
+
+
+var fields = [username, password, birthdate];
+
+var formIsValid = fields.every(function(field) {
+  return field.validate();
+});
+
+
+if (formIsValid) {
+// allow user to submit
+} else {
+// show an error message
+}
+
+
+// Question 11: Finding Submitted Users
+// Given an array of users, return 'true' if every user has submitted a request form.
+// Assign the result to the variable 'hasSubmitted'
+
+
+var users = [
+  { id: 21, hasSubmitted: true },
+  { id: 62, hasSubmitted: false },
+  { id: 4, hasSubmitted: true }
+];
+
+var hasSubmitted = users.every(user => {
+  // We can do this because every returns a boolean
+  return user.hasSubmitted;
+});
+
+// Question 12: In Progress Network Requests
+
+var requests = [
+  { url: '/photos', status: 'complete' },
+  { url: '/albums', status: 'pending' },
+  { url: '/users', status: 'failed' }
+];
+
+var inProgress = requests.some(request => {
+  return request.status === 'pending';
+})
+
+// What is the difference between every and some?
