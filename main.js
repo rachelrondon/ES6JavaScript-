@@ -162,9 +162,142 @@ commentsForPost(post, comments);
 // Question Five: Filtering Values
 
 var numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95];
-var filteredNumbers = [];
 
-numbers.filter(function(number) {
-   return number > 50;
-})
-var filteredNumbers;
+// Here filteredNumbers is defined and set equal to numbers.filter.
+// It is passed number, and set to return numbers that are greater than 50.
+var filteredNumbers = numbers.filter((number) => {
+  return number > 50;
+});
+
+filteredNumbers;
+
+
+// Question 6: Handling Permissions with Filter
+
+// Filter the array of users, only returning users who have admi level access.
+// Assign the result to the variable 'filteredUsers'.
+// Don't forget to use the 'return' keyword in the function.
+
+// need to continue to work on this solution
+var users = [
+  { id: 1, admin: true },
+  { id: 2, admin: false },
+  { id: 3, admin: false },
+  { id: 4, admin: false },
+  { id: 5, admin: false }
+];
+
+var filteredUsers = users.filter((user) => {
+  return user.admin;
+});
+
+var filteredUsers;
+
+
+
+// Question 7: Implementing 'reject'
+
+// A reject function has been defined and it is passed an array and an iteratorfunction
+function reject(array, iteratorFunction) {
+// the filter helper method is performed on the array
+  return array.filter(function(element) {
+
+    return !iteratorFunction(element)});
+  }
+
+
+// Find Helper method
+
+// The Car function is defined and passed the parameter of model
+function Car(model) {
+	this.model = model;
+}
+
+// The car array is defined
+var cars = [
+  new Car('Buick'),
+  new Car('Camaro'),
+  new Car('Focus')
+ ];
+
+// The find helper method is performed on the cars array
+cars.find(function(car) {
+// The car with the model of Focus will be returned
+  return car.model === 'Focus';
+});
+
+// Another Example:
+
+// The posts array is defined
+var posts = [
+  { id: 1, title: 'New Post' },
+  { id: 2, title: 'Old Post' }
+];
+
+// The comment object is defined
+var comment = { postId: 1, content: 'Great Post' };
+
+// the postForComment function is defined and passed the parameters posts and comment
+function postForComment(posts, comment) {
+// The find helper method is performed on posts and is passed a iterator function
+  return posts.find(function(post) {
+// return the comments that match with the post id.
+    return post.id === comment.postId;
+  });
+}
+
+postForComment(posts, comment);
+
+
+function Car(model) {
+  this.model = model;
+}
+
+var cars = [
+// this.model = 'Buick'
+  new Car('Buick'),
+// this.model = 'Camaro'
+  new Car('Camaro'),
+// this.model = 'Focus'
+  new Car('Focus')
+];
+
+cars.find(function(car) {
+  return car.model === 'Focus';
+});
+
+
+// Example:
+// Out of all of the posts, find the post with the id of 45
+
+// An array of posts
+const posts = [
+  {id: 1, title: 'Post title'},
+  {id: 2, title: 'Post title'},
+  {id: 3, title: 'Post title'},
+  {id: 4, title: 'Post title'},
+  {id: 5, title: 'Post title'},
+  {id: 6, title: 'Post title'}
+];
+
+const postId = getIdFromURL();
+// Walk through the posts and find the id that equals 45
+posts.find(post => post.id === postId);
+
+
+// Question 8:
+// Find the user in the user's array who is an admin.
+// Assign this user to the variable 'admin'
+
+
+var users = [
+  { id: 1, admin: false },
+  { id: 2, admin: false },
+  { id: 3, admin: true }
+];
+
+var admin = users.find(user => {
+  return user.admin === true;
+});
+
+admin;
