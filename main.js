@@ -616,3 +616,59 @@ double(8, 7);
 // Condensed code with fat arrow functions
 const numbers = [1,2,3];
 numbers.map(number => 2 * number);
+
+
+// this //
+const team = {
+  members: ['Jane', 'Bill'],
+  teamName: 'Super Squad',
+  teamSummary: function() {
+    // this === team
+    // lexical this
+    // lexical = the placement of this term depends on how it is interperated or evaluated.
+    // It depends on where it is placed within the fat arrow function
+    return this.members.map(member) => {
+      return `${member} is on team ${this.teamName}`;
+    });
+  }
+};
+
+team.teamSummary();
+
+
+// Another example:
+
+const profile = {
+  name: 'Alex',
+  getName: function() {
+    return this.name;
+  }
+};
+
+
+// Syntactic changes to the language
+  // Enhanced object literals
+
+// create a function and pass it the inventory parameter.
+function createBookShop(inventory) {
+  return {
+    inventory: inventory,
+    inventoryValue: function() {
+      return this.inventory.reduce((total, book) => total + book.price, 0);
+    },
+    priceForTitle: function(title) {
+      return this.inventory.find(book => book.title === title).price;
+    }
+  };
+}
+
+const inventory = [
+  { title: 'Harry Potter', price: 10 },
+  { title: 'Eloquent JavaScript', price: 15}
+];
+
+const bookShop = createBookShop(inventory);
+
+
+bookShop.inventoryValue();
+bookShop.priceForTitle(Harry Potter);
