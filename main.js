@@ -535,3 +535,84 @@ balancedParens("((((");
   }, 0);
 
   totalDistance;
+
+  // Question 14: Reducing Properties
+  // Use the reduce helper to create an object that tallies the number of sitting and standing desks.
+
+  var desks = [
+    { type: 'sitting' },
+    { type: 'standing' },
+    { type: 'sitting ' },
+    { type: 'sitting' },
+    { type: 'standing' }
+  ];
+
+  var deskTypes = desks.reduce(function(accumulator, desk) {
+    if (desk.type === 'sitting') ++accumulator.sitting;
+    if (desk.type === 'standing') ++accumulator.standing;
+    return accumulator;
+  }, { sitting: 0, standing: 0 });
+
+
+  // Question 15: Custom 'Unique' Helper
+  // Write a function called 'unique' that will remove all the duplicate values from an array
+
+  var numbers = [1,1,2,3,4,4];
+
+  function unique(array) {
+    return array.reduce((accu, item) => {
+      if (!accu.find(acc => acc === item))
+       accu.push(item);
+      return accu;
+    }, [])
+  }
+  unique(numbers);
+
+
+// Variable Declarations: Const and Let
+  // Features that bring new functionality to JavaScript
+  // ES6 - Do not use var
+  // Use const or let
+  // Const - keyword used to declare variables where we expect the value to never change
+  // Let - keyword used to declare a variable that the value may change overtime
+  // We use Const and Let to make our code more legible
+
+
+// Template Strings
+// String interpolation
+// Use backticks and then add ${} when you want to inject a JavaScript expression
+
+function getMessage() {
+	const year = new Date().getFullYear();
+
+  return `The year is ${year}`;
+}
+
+getMessage();
+
+// ES6 Arrow Functions
+
+const add = (a, b) => {
+  return a + b;
+}
+
+const newSum = add(1, 2);
+newSum;
+
+// Another Example
+
+const double = number => 2 * number;
+// If we have a single argument (which is number) we can remove the parenthesis about it.
+double(8);
+
+
+const double = (number1, number2) => {
+  return 2 * number1 + 2 * number2;
+};
+
+double(8, 7);
+
+
+// Condensed code with fat arrow functions
+const numbers = [1,2,3];
+numbers.map(number => 2 * number);
