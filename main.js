@@ -669,6 +669,649 @@ const inventory = [
 
 const bookShop = createBookShop(inventory);
 
-
 bookShop.inventoryValue();
 bookShop.priceForTitle(Harry Potter);
+
+
+// forEach helper method built into the array object
+// this method is codified into ES6
+
+var colors = [ 'red', 'blue', 'green'];
+// this is a solution using a for loop
+  for (let i = 0; i < colors.length; i++) {
+  	console.log(colors[i]);
+	}
+// for loops are prone to typo's which is why we may not want to use a for loop
+// array helpers help with iteration over an array
+
+var colors = [ 'red', 'blue', 'green'];
+
+colors.forEach(function(color) {
+  // forEach is the array helper method
+  // colors is the array that forEach is called on
+  // When we call the forEach method we pass in an anonymous function
+  // The function is called one time for every element in the array
+  // for forEach behaves the same as a for loop
+  // the forEach is less code
+  console.log(color);
+});
+
+
+
+// Create an array of numbers
+let numbers = [1,2,3,4,5]
+// Create a variable to hold the sum
+let sum = 0;
+// Loop over the array, incrementing the sum variable
+numbers.forEach(function(number) {
+  sum += number;
+})
+// print the sum variable
+sum;
+
+
+// Another Example:
+
+function handlePosts() {
+    var posts = [
+      { id: 23, title: 'Daily JS News' },
+      { id: 52, title: 'Code Refactor City' },
+      { id: 105, title: 'The Brightest Ruby' }
+    ];
+
+  posts.forEach(function(post) {
+    savePost(post);
+  });
+}
+
+function savePost(post){
+  console.log('saving post:' + post.title)
+}
+
+handlePosts();
+
+// Another Example: Processing Values
+
+var images = [
+  { height: 10, width: 30},
+  { height: 20, width: 90},
+  { height: 54, width: 32 }
+];
+
+var areas = [];
+
+images.forEach(function(image) {
+ areas.push(images.height*images.width);
+})
+
+// map helper - the most used helper method
+
+// write a loop that iterates over a loop of numbers
+// doubles the numbers in the array
+// pushes the doubled values into a new array
+
+let numbers = [1, 2, 3];
+let doubled = []
+
+for (let i = 0; i < numbers.length; i++) {
+  doubled.push(numbers[i]* 2);
+}
+
+doubled;
+
+
+// Write this code with the map helper method
+
+let numbers = [1, 2, 3];
+
+let doubledNumbers = numbers.map(function(number) {
+  return number * 2;
+});
+
+doubledNumbers;
+
+
+var cars = [
+  { model: 'Buick', price: 'CHEAP'},
+  { model: 'Camaro', price: 'expensive'}
+];
+
+var prices = cars.map(function(car) {
+  return car.price;
+});
+
+prices;
+
+
+
+Answer:
+
+var images = [
+  { height: '34px', width: '39px' },
+  { height: '54px', width: '19px' },
+  { height: '83px', width: '75px' },
+];
+
+var heights = images.map(function(images) {
+  return images.height;
+})
+
+var heights;
+
+
+// Use the map helper method to return the heights in a new array
+
+var images = [
+  { height: '34px', width: '39px' },
+  { height: '54px', width: '19px' },
+  { height: '83px', width: '75px' },
+];
+
+
+let heights = images.map(function(images) {
+  return images.height;
+})
+
+heights;
+
+
+// Answer:
+
+var trips = [
+  { distance: 34, time: 10 },
+  { distance: 90, time: 50 },
+  { distance: 59, time: 25 }
+];
+
+var speeds = trips.map(function(trip) {
+  return trip.distance / trip.time
+})
+
+var speeds;
+
+
+// Answer:
+
+var users = [
+  { id: 1, admin: true },
+  { id: 2, admin: false },
+  { id: 3, admin: false },
+  { id: 4, admin: false },
+  { id: 5, admin: false }
+];
+
+var filteredUsers = users.filter((user) => {
+  return user.admin === true;
+});
+
+var filteredUsers;
+
+
+//
+
+var users = [
+  { id: 1, admin: true },
+  { id: 2, admin: false },
+  { id: 3, admin: false },
+  { id: 4, admin: false },
+  { id: 5, admin: false }
+];
+
+var filteredUsers = users.filter((user) => {
+  return user.admin;
+});
+
+var filteredUsers;
+
+//
+
+var users = [
+  { id: 1, admin: false },
+  { id: 2, admin: false },
+  { id: 3, admin: true }
+];
+
+var admin = users.find(user => {
+  return user.admin === true;
+});
+
+admin;
+
+
+//
+
+var accounts = [
+  { balance: - 10},
+  { balance: 12 },
+  { balance: 0 }
+];
+
+var account = accounts.find(account => {
+  return account.balance === 12;
+});
+
+account;
+
+//
+
+
+var users = [
+  { id: 21, hasSubmitted: true },
+  { id: 62, hasSubmitted: false },
+  { id: 4, hasSubmitted: true }
+];
+
+var hasSubmitted = users.every(user => {
+  return user.hasSubmitted;
+});
+// Enhanced Object literals
+// write object literals in a more compact fashion
+// when the key- value pairs are the same we can only list one
+// this will condense it to a single statement
+// if you have a key-value pair the value is the function you can remove the function keyword and the :
+function createBookShop(inventory) {
+  return {
+    inventory,
+    inventoryValue() {
+      return this.inventory.reduce((total, book) => total + book.price, 0)
+      // 0 is the starting value of our inventory
+    },
+    priceForTitle(title){
+      return this.inventory.find(book => book.title === title).price;
+    }
+  };
+}
+
+const inventory = [
+  { title: 'Harry Potter', price: 10},
+  { title: 'JavaScript', price: 15 }
+];
+
+const bookShop = createBookShop(inventory);
+
+bookShop.inventoryValue();
+bookShop.priceForTitle('Harry Potter');
+
+// Use jQuery to post data or put in a request to come endpoint
+// Move the shortened variables to the left side
+// You can also put them into a vertical list
+
+function saveFile() {
+  $.ajax({
+    url,
+    data,
+    method: 'POST' });
+}
+
+const url = 'http://fileupload.com';
+const data = { color: 'red' };
+
+saveFile(url, data);
+
+
+// default function arguments
+// you do not need to do an existence request
+// in the argument you can update the method in the argument to the default of 'GET'
+// this is replaced:
+// if (!method) {
+  // method = 'Get';
+// }
+function makeAjaxRequest(url, method = 'GET') {
+
+  return method;
+  // logic to make the request
+  // get is the most common request
+}
+
+makeAjaxRequest('google.com', null);
+// null will not try to re-assign method to 'GET';
+
+makeAjaxRequest('google.com', 'GET');
+
+
+// Continued...
+// make a function that will create a user object
+
+function User(id) {
+  this.id = id;
+}
+
+function generateId() {
+  return Math.random() * 999999999;
+}
+
+function createAdminUser(user = new User(generateId())) {
+  user.admin = true;
+
+  return user;
+}
+
+const user = new User(generateId());
+createAdminUser(user);
+
+// Rest and Spread operators
+// the rest operator is ...
+function addNumbers(...numbers) {
+  return numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+}
+
+addNumbers([1,2,3,4,5,6,7,8,9,10]);
+
+// spread operator is used to spread them out
+// display a pallete of colors to our users
+
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+
+defaultColors.concat(userFavoriteColors);
+
+// the concat method is a method that exists on every single array
+// we can pass in a new array and it will join
+
+// We can use the spread operator to make the exact same effect
+
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+const fallColors = ['fire red', 'fall orange'];
+
+[ 'green', 'blue', ...fallColors, ...defaultColors, ...userFavoriteColors ];
+// here we are creating a new array
+// inside we referenced an existing array and put ... in front of it
+// the same process is repeated for userFavoriteColors
+// It allows you to see exactly what you are doing with this line of code
+// Benefit: can add in additional arrays and new elements
+
+
+function validateShoppingList(...items) {
+  if (items.indexOf('milk') < 0) {
+    return [ 'milk', ...items ];
+  }
+
+  return items;
+}
+
+validateShoppingList('oranges', 'bread', 'eggs');
+
+
+//
+
+const MathLibrary = {
+  calculateProduct(...rest) {
+    console.log('Please use the multiply method instead');
+    return this.multiply(...rest);
+  },
+  multiply(a, b) {
+    return a * b;
+  }
+};
+
+
+
+// forEach
+
+var colors = ['red', 'blue', 'green'];
+
+for (let i = 0; i < colors.length; i++ ) {
+  return colors[i];
+}
+
+colors;
+
+
+// Create an array of numbers
+// Create a varible to hold the sum
+// Loop over the array, incrementing the sum variable
+// print the sum variable
+
+let numbers = [1, 2, 3, 4];
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+  return sum += 1;
+}
+
+
+// rest operator
+
+function addNumbers(...numbers) {
+
+  return numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+}
+
+addNumbers(1,2,3,4,5,6,7);
+
+// spread operator
+// used to spread variables out
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+
+defaultColors.concat(userFavoriteColors);
+
+
+// ES6 - Enhanced Object Literals
+
+function createBookShop(inventory) {
+  return {
+    inventory,
+    inventoryValue() {
+      return this.inventory.reduce((total,book) => total + book.price, 0);
+      },
+    priceForTitle(title) {
+      return this.inventory.find(book => book.title === title).price;
+    }
+  };
+}
+
+const inventory = [
+  {title: 'Harry Potter', price: 10},
+  {title: 'JavaScript', price: 15}
+];
+
+const bookShop = createBookShop(inventory);
+
+bookShop.inventoryValue();
+bookShop.priceForTitle('Harry Potter');
+
+
+// Example:
+// Use JQuery to post data
+
+function saveFile(url, data) {
+// $.ajax({ method: 'POST', url: url, data: data });
+  $.ajax({
+    url,
+    data,
+    method: 'POST'
+  });
+}
+
+
+const url = 'http://fileupload.com';
+const data = { color: 'red' };
+
+saveFile(url, data);
+
+
+
+// Specifying Default Function Arguments
+function makeAjaxRequest(url, method = 'GET') {
+  return method;
+  // you do not have to do an existance check anymore.
+  // you can add this in the argument list of the function
+  // if (!method) {
+  //   method = 'GET';
+  // }
+  // logic to make the request
+}
+
+makeAjaxRequest('google.com', null);
+// if you pass in 'null', it will not get reassigned.
+// if you pass in 'undefined' it will be reassigned to 'GET'
+makeAjaxRequest('google.com', 'POST');
+
+
+// Default Function Arguments continued...
+// Write a function that will create a user
+// Every time a user is created they must be asigned an id
+function User(id) {
+  this.id = id;
+}
+
+User(1);
+console.log(id)
+// This creates a user with an id of 1
+
+
+function generateId() {
+  // this will create a random id
+  return Math.random() * 9999999;
+}
+
+function createAdminUser(user = new User(generateId())) {
+  user.admin = true;
+
+  return user;
+}
+
+const user = new User(generateId());
+createAdminUser(user);
+
+// REST and SPREAD operators
+// Write less code (this is the purpose)
+
+// Reduce array helper - this is used to compact all of the values in an array
+// Sum up all of the numbers in an array
+
+function addNumbers(...numbers) {
+// the rest operator is ...
+// accept that there will be some number of arguments
+// What to capture the arguments and put them into an array of numbers
+// The rest operator is used in function arguments
+  return numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+}
+
+addNumbers(1,2,3,4,5,6,7);
+
+
+// The spread operator
+// This is used to flatten or spread out
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+
+defaultColors.concat(userFavoriteColors);
+
+// the concat method combines the two arrays
+
+// You can use the spread operator instead
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+const fallColors = ['fire red', 'fall orange'];
+
+[ 'blue', ...fallColors, ...defaultColors, ...userFavoriteColors ];
+
+/// the ... is the spread operator
+// this combines the two arrays
+// The output is identical to using the concat method
+// This helps use view what is exactly happening with this array
+// By using the spread operator to concat arrays together you can add an element into the array
+// You can mix and match the spread and rest operators
+
+function validateShoppingList(...items) {
+  // if milk does not exist in the items, add milk to the list of items.
+ if (items.indexOf('milk') < 0) {
+   return [ 'milk', ...items ];
+ }
+
+ return items;
+}
+
+validateShoppingList('oranges', 'bread', 'eggs')
+
+// the indexOf() method returns the index within the calling string object.
+// example: str.indexOf(searchValue[, fromIndex])
+
+
+const MathLibrary = {
+  // This will handle passthrough of arguments to different functions
+  calculateProduct(...rest) {
+    console.log('Please use the multiply method instead')
+    return this.multiply(...rest);
+  },
+  multiply(a,b) {
+    return a * b;
+  }
+};
+
+// Destructuring
+// This gives you flexibility over the style of the code that you write
+
+var expense = {
+  type: 'Business',
+  amount: '$45 USD'
+};
+
+var type = expense.type;
+var amount = expense.amount;
+
+// Reduce the amount of duplicate code that we see
+
+const { type } = expense;
+const { amount } = expense;
+
+// This can be re-declared
+
+const { type, amount } = expense;
+type;
+amount;
+
+// I want to declare a variable called amount
+// I want to assign it to a variable called expense.amount
+
+// Destructuring - dramatically decreases that amount of code that we will need to write
+// Can be used to pull properties off of objects
+
+var savedFile = {
+  extension: 'jpg';
+  name: 'repost',
+  size: 14040
+};
+
+function fileSummary({ name, extension, size }) {
+  return `The file ${name}.${extension} is of size ${size}`
+}
+
+fileSummary(savedFile, { color: 'red' });
+
+// Destructe out of arrays
+
+const companies = [
+  'Google',
+  'Facebook',
+  'Uber'
+];
+
+const [ name, name2, name3, name4 ] = companies;
+
+const { length } = companies;
+
+name;
+name2;
+name3;
+typeof name4;
+
+// This is a better way to write the following:
+
+const firstCompany = companies[0];
+const secondCompany = companies[1];
+const thirdCompany = companies[2];
