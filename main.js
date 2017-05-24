@@ -1302,7 +1302,6 @@ const companies = [
 ];
 
 const [ name, name2, name3, name4 ] = companies;
-
 const { length } = companies;
 
 name;
@@ -1310,8 +1309,64 @@ name2;
 name3;
 typeof name4;
 
+const [ name, name2, ...rest ] = companies;
+name
+name2
+rest;
+
 // This is a better way to write the following:
 
 const firstCompany = companies[0];
 const secondCompany = companies[1];
 const thirdCompany = companies[2];
+
+
+//
+const companies = [
+  { name: 'Google', location: 'Mountain View' },
+  { name: 'Facebook', location: 'Menlo Park' },
+  { name: 'Uber', location: 'San Francisco' }
+];
+
+var [{ location }] = companies;
+location
+
+//
+
+Const Google = {
+  locations: [ 'Mountain View', 'New York', 'London']
+};
+
+// regular way to access Mountain View:
+
+Google.locations[0]
+// This is how you acces with destructuring
+
+const { locations: [ locations ] } = Google;
+
+locations;
+
+// Destructing in a practical environment
+
+function signup(username, password) {
+  // create a new user
+}
+signup('myname', 'mypassword');
+
+
+// ES6 Practice:
+
+let name = 'Rachel\'s';
+console.log(name);
+
+let birthday = ' Birthday';
+console.log(birthday);
+
+let birthdayMonth = ' May';
+console.log(birthdayMonth);
+
+name.concat(birthday).concat(birthdayMonth);
+
+// ES6
+
+[...name, ...birthday, ...' is in ', ...birthdayMonth ]
