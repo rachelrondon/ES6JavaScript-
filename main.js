@@ -1370,3 +1370,406 @@ name.concat(birthday).concat(birthdayMonth);
 // ES6
 
 [...name, ...birthday, ...' is in ', ...birthdayMonth ]
+
+// Destructing - to improve our codebase and how we write our code
+
+function signUp(username, password, email, dateOfbirth, city) {
+// create new user
+
+}
+// other code
+// other code
+// other code
+
+signUp('myname', 'mypassword', 'myemail@example.com', '1/1/1990', 'New York');
+
+const user = {
+  username: 'myname',
+  password: 'mypassword',
+  email:'myemail@example.com',
+  dateOfbirth: '1/1/1990',
+  city: 'New York'
+};
+
+signUp({username, password, email, dateOfbirth, city})
+
+//
+const points = [
+  [4, 5],
+  [10, 1],
+  [0, 40]
+];
+
+// We are trying to transform our data in some fashion
+[
+  { x: 4, y: 5 },
+  { x: 10, y: 1 },
+  { x: 0, y: 40 }
+]
+// How to do this with ES6
+
+points.map(([ x, y ]) => {
+  return { x, y};
+});
+
+// Introduction to classes
+// Inheritance
+// Object inheritance
+// Prototypal inheritance
+// Classes are not an absolute solution
+
+// declared a Car object
+function Car(options) {
+  this.title = options.title;
+}
+
+// added one method to it
+Car.prototype.drive = function() {
+    return 'vroom';
+}
+
+function Toyota(options) {
+  Car.call(this, options);
+  this.color = options.color;
+}
+
+Toyota.prototype = Object.create(Car.prototype);
+
+Toyota.prototype.constructor = Toyota;
+
+Toyota.prototype.honk = function() {
+  return 'beep';
+}
+
+
+const toyota = new Toyota({ color: 'red', title: 'Daily Driver'});
+toyota;
+
+
+// Refactoring with classes
+
+class Car {
+  constructor({ title }) {
+    this.title = title;
+  }
+
+  drive() {
+    return 'vroom';
+  }
+}
+
+class Toyota extends Car {
+  constructor(options) {
+    super(options);
+    // Car.constructor()
+    this.color = options.color;
+  }
+
+  honk(){
+    return 'beep';
+  }
+}
+
+const toyota = new Toyota({ color: 'red', title: 'Daily Driver' });
+'----';
+toyota.honk();
+toyota.drive();
+toyota;
+
+// When do you use classes?
+
+React.createClass({
+  doSomething() {
+
+  }
+
+  doSomethingElse(){
+
+  }
+});
+
+class MyComponet extends Component {
+  doSomething() {
+
+  }
+
+  doSomethingElse(){
+
+  }
+}
+
+// More ways to iterate through collections
+// For of loop
+// This is for iterating through arrays of data
+
+const colors = ['red', 'green', 'blue'];
+
+for (let color of colors) {
+  console.log(color);
+}
+
+const numbers = [1,2,3,4];
+
+let total = 0;
+for (let number of numbers) {
+  total += number;
+}
+
+// Introduction to Generators
+// A generator is a function that can be entered and exited multiple times
+// We can run some code, return a value, and then go back into the function
+// Focus on the syntax
+
+// We use generators for iteration
+// Generator delegation: how to get generators to work together
+// A generator is a function that can be entered and exited multiple times
+// With generators we can run some code, return a value and then return back into it.
+
+function* shopping() {
+  // stuff on the sidewalk
+
+  // walking down the sidewalk
+
+  // go into the store with cash
+  const stuffFromStore = yield 'cash';
+
+  const cleanClothes = yield 'laundry';
+  // by adding the star we create a generator function
+
+  // walking back home
+  return [ stuffFromStore, cleanClothes];
+}
+
+  // stuff in the store
+const gen = shopping();
+gen.next(); // leaving our house
+// walked into the store ..
+// walking up and down the aisles ..
+// purchase our stuff ..
+// Add another yield statement
+
+gen.next('groceries'); // leaving the store with groceries
+gen.next('clean clothes');
+// We can call yield inside a generator multiple times
+// generators ...
+
+
+// For of loop
+// You can use this to iterate through an array
+
+function* color() {
+  yield 'red';
+  yield 'blue';
+  yield 'green';
+}
+
+const gen = color();
+gen.next();
+gen.next();
+gen.next();
+gen.next();
+
+
+// generators work really well with for of loops
+
+const myColors = [];
+for (let color of colors()) {
+  myColors.push(color);
+}
+myColors;
+
+// we can use generators to iterate through any data structure that we want
+
+const testingTeam = {
+  lead: 'Amanda',
+  tester: 'Bill',
+  [Symbol.iterator]: function* () {
+    yield this.lead;
+    yield this.tester;
+  }
+};
+
+const engineeringTeam = {
+  testingTeam,
+  size: 3,
+  department: 'Engineering',
+  lead: 'Jill',
+  manager: 'Alex',
+  engineer: 'Dave',
+  [Symbol.iterator]: function* () {
+    yield this.lead;
+    yield this.manager;
+    yield this.engineer;
+    yield* this.testingTeam;
+  }
+};
+
+function* TeamIterator(team) {
+  yield team.lead;
+  yield team.manager;
+  yield team.engineer;
+  const testingTeamGenerator = testingTeamIterator(team.testingTeam);
+  yield* testingTeamGenerator;
+}
+
+function* testingTeamIterator(team) {
+  yield team.lead;
+  yield team.tester;
+}
+
+const names = [];
+
+for (let name of TeamIterator(engineeringTeam)) {
+  names.push(name);
+}
+
+names;
+// How to combine mutiple generators together
+// Delegation of generators
+// symbol iterator is a tool that teachs objects how to respond to the for of loop
+
+
+// Tree - popular data structure that can be used for a variety of purposes
+// Trees are everywhere in web applications
+
+
+// Create a tree and then iterate through it
+// Create a tree datastructure
+
+
+class Comment {
+  constructor(content, children){
+    this.content = content;
+    this.children = children;
+  }
+
+  *[Symbol.iterator]() {
+    yield this.content;
+    for (let child of this.children) {
+      yield* child;
+    }
+  }
+}
+
+const children = [
+  new Comment('good comment', []),
+  new Comment('bad comment', []),
+  new Comment ('meh', [])
+];
+
+const tree = new Comment('Great post!', children);
+
+const values = [];
+for (let value of tree) {
+  values.push(value);
+}
+values;
+]
+
+
+promise = new Promise((resolve, reject) => {
+  resolve();
+});
+
+promise.then(() => {
+  console.log('finally finished!');
+})
+
+//
+promise = new Promise((resolve, reject) => {
+  var request = new XHTMLRequest
+  // make request
+  request.onload = () => {
+    resolve();
+  };
+});
+
+// two .then
+promise
+  .then(() => console.log('finally finished!'))
+  .then(() => console.log('I was also ran!'))
+  .catch(() => console.log('uh oh!')
+
+// fetch
+// decide which URL we want to make a request to
+
+url = 'https://jsonplaceholder.typicode.com/posts/';
+
+fetch(url)
+  .then(response => console.log(response));
+  .catch(error => console.log('BAD', error));
+
+
+// FizzBuzz Challenge
+// Write a JavaScript snippet that prints console.log() all numbers from 1 to 100 with the following exceptions:
+// If a number is divisible by 3, print 'Fizz' instead of the number
+// If a number is dividible by 5, print 'Buzz' instead of the number
+// If a number is divisible by 3 and 5, print 'FizzBuzz' instead of the number
+
+function fizzBuzz(number) {
+  if (number % 3 === 0 && number % 5 === 0) {
+    console.log('FizzBuzz');
+  }  else if (number % 5 === 0) {
+    console.log('Buzz');
+  } else if (number % 3 === 0) {
+    console.log('Fizz')
+  }
+}
+
+fizzBuzz(10);
+
+// Guess the number
+
+let x = 5;
+let userInput=prompt('Guess a number between 1 - 10')
+
+while (x!==userInput) {
+  if (userInput > 5) {
+    alert ('too high')
+    userInput=parseInt(prompr('Guess a number between 1 - 10'));
+  } else if (userInput < 5) {
+    alert ('too low')
+    userInput=parseInt(prompt('Guess a number between 1 - 10'));
+  } else {
+    alert ('you are correct!')
+  }
+}
+
+// Adventure Story
+
+let transportation = prompt('What is your favorite mode of transportation?');
+let destination = prompt('What is your favorite place to visit');
+let fear = prompt('What are you most afraid of?');
+let secretWeapon = prompt('What is your secret weapon?');
+let enemy = prompt('Who is your worst enemy?');
+let profession = prompt('What is your dream profession?');
+
+let answers = [
+  ['driving', 'walking', 'taking the subway', 'flying'],
+  ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island'],
+  ['a zombie', 'a vampire', 'a sorcerer', 'ork', 'leprechaun'],
+  ['wit', 'strength','tenacity', 'intuition', 'perception'],
+  ['apocalypse', 'a horrible reality show', 'rush hour traffic', 'a delayed subway', 'a near death experience'],
+  ['teacher', 'doctor', 'librarian', 'chemist', 'superhero']
+];
+
+console.log('Today, I was ' + transportation + ' to ' + destination + ' On my way, I encountered ' + fear + ' I had to use my ' + secretWeapon + ' to escape the horrible cluthes of ' + enemy + ' All in a days work as a ' + profession)
+
+
+// MTA
+let userInput = prompt('L train, N train, or 6 train?')
+
+let lTrain = ['8th Ave', '6th Ave', 'Union Square', '3rd Ave', '1st Ave', 'Bedford Ave'];
+let nTrain = ['Times Square', 'Herald Square', '28th St.', '23rd St.', 'Union Square', '8th St.'];
+let sixTrain = ['Grand Central', '33rd St', '28th St', '23rd St', 'Union Square', 'Astor Place'];
+
+if (userInput === 'L') {
+    console.log(userInput + ' train');
+    console.log(lTrain);
+} else if (userInput === 'N') {
+  console.log(userInput + ' train');
+  console.log(nTrain);
+} else if (userInput === '6') {
+  console.log(userInput + ' train');
+  console.log(sixTrain);
+}
