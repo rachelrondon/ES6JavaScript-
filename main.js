@@ -1773,3 +1773,136 @@ if (userInput === 'L') {
   console.log(userInput + ' train');
   console.log(sixTrain);
 }
+
+// Movie Database Function
+
+var blade = {
+  title: 'blade',
+  director: 'Stephen Norrington',
+  actors: ['Wesley Snipes', 'Stephen Dorff', 'Kris Kristofferson'],
+  releaseYear: 1998,
+  duration: 120
+}
+
+
+function movieTitle() {
+  return blade.title;
+}
+
+movieTitle();
+
+function movieDirector() {
+  return blade.director;
+}
+
+movieDirector()
+
+function releaseYear() {
+  return blade.releaseYear;
+}
+
+releaseYear()
+
+function increaseYear() {
+  return blade.releaseYear + 25;
+}
+
+increaseYear()
+
+// Write a for loop to print each of the actor's names
+
+function movieActors() {
+  for (let i = 0; i < blade.actors.length; i++) {
+    return blade.actors;
+  }
+}
+
+movieActors()
+
+// Reading List
+
+var readingList = [
+  {
+    title: 'The Hobbit',
+    author: 'J.R.R. Tolkien',
+    alreadyRead: false
+  },
+  {
+    title: 'Harry Potter and the Order of the Phoenix',
+    author: 'J.K. Rowling',
+    alreadyRead: true
+  }
+];
+
+
+function printReadingList() {
+  for (let i = 0; i < readingList.length; i++) {
+      console.log(readingList[i].title);
+  }
+}
+
+printReadingList();
+
+
+function printBookInfo() {
+  for (let i = 0; i < readingList.length; i++) {
+    console.log(readingList[i].title + ' by ' + readingList[i].author)
+  }
+}
+
+printBookInfo();
+
+
+function completedBooks() {
+  for (let i = 0; i < readingList.length; i++) {
+    if (readingList[i].alreadyRead === true) {
+      console.log('You already read this book!')
+    } else {
+      console.log('You have not read this book!')
+    }
+  }
+}
+
+completedBooks();
+
+
+// Tom Brady Functions
+
+let tomBrady = {
+  firstName: 'Tom',
+  lastName: 'Brady',
+  height: [6,4],
+  weight: 225,
+  teammates: [
+    {
+      firstName: 'Rob',
+      lastName: 'Gronkowski',
+      age: 27
+    },
+    {
+      firstName: 'Julian',
+      lastName: 'Edelman',
+      age: 30
+    },
+    {
+      firstName: 'Dion',
+      lastName: 'Lewis',
+      age: 26
+    }
+  ],
+  superBowlRings: 4,
+  throwFootball: function() {
+    return 'Touchdown!';
+  },
+  introduce: function() {
+    console.log(`I am ${this.firstName} ${this.lastName}`);
+  }
+};
+
+
+
+let question = function(){
+  console.log(`Hey ${tomBrady.teammates[0].firstName} ${tomBrady.teammates[0].lastName}, are you ready to score some touchdowns?!`)
+}
+
+question();
