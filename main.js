@@ -1899,10 +1899,101 @@ let tomBrady = {
   }
 };
 
-
-
 let question = function(){
   console.log(`Hey ${tomBrady.teammates[0].firstName} ${tomBrady.teammates[0].lastName}, are you ready to score some touchdowns?!`)
 }
 
 question();
+
+
+// enhanced object literals
+
+
+function createBookShop(inventory) {
+  return {
+    inventory: inventory,
+    inventoryValue: function() {
+      return this.inventory.reduce((total, book) => total + book.price, 0);
+    },
+    priceForTitle: function() {
+
+    }
+  };
+}
+
+
+const inventory = [
+  { title: 'Harry Potter', price: 10 },
+  { title: 'JavaScript', price: 15 }
+];
+
+
+const bookShop = createBookShop(inventory);
+
+/* regular expressions */
+/* Everything is a character and we are writing patterns to match a specific sequence of characters
+/* A regular expression provides a concise and flexible means to "match" (specify and recognize) strings of text, such as particular characters, words, or patterns of characters */
+
+[a-z]
+//[a-z] is called a class of characters it means all characters between "a" to "z";
++
+// this is a quantificator that means one to infinite
+// this means 1 and plus
+^
+// this means from the beginning
+\
+// this means that the next character is not special and should be interperated literally
+\d
+// this matches a digit character
+$
+// this means from the end
+.
+// this means "Any character"
+*
+// this is a quantificator that means from 0 to infinite time
+.*
+// this means any string, even the empty string
+?
+// this means zero or one
+{4,6}
+// this means from 4 to 6
+{4,}
+// this means from 4 to infinite
+{,6}
+// this means from 0 to 6
+{0,}
+// this is the same as *
+{1,}
+// this is the same as +
+{4}
+// this means 4
+
+[^e]
+// this means anything but e
+[a-z0-9._%+-]
+// this means any characters between a to z, 0 to 9 a dot "." an underscore "_" a plus "+" a hypen "-" or a percentage "%"
+// inside the brackets [], the dot character and the plus character does not mean a class character or quantificator but is used for its literal meaning dot "." and plus "+"
+
+
+str.match
+// use the match method to return an array containing all the occurrences of the pattern inside the text, null otherwise
+
+var myRegexp = /ain/g;
+var str= "The rain in SPAIN stays mainy in the plain";
+var occurrences = str.match(myRegexp);
+
+g
+// the "modifier in ain/g is used to find all matches rather than stopping after the first match"
+
+// regexp sample:
+var text = "Michael is born the 1972-11-22, John the 1973-04-15 and Mary the 1972-11-21. Can someone tell me the biggest age?"
+var regDate = /\d{4}-\d{2}-\d{2}/g;
+// this means digit character that contains 4 characters, "-", digit charater that contain two characters, "-", digit character that contains two characters. Find all occurrences, do not stop at the first 
+
+
+/* Check if a string contains letters from A to C */
+
+// var AtoC = /[a-z]/;
+// if (AtoC.test('aacczzz')){
+//   console.log('aacczzz has the [a-c character at least once]');
+// }
