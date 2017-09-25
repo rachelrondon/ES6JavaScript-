@@ -1987,8 +1987,8 @@ g
 
 // regexp sample:
 var text = "Michael is born the 1972-11-22, John the 1973-04-15 and Mary the 1972-11-21. Can someone tell me the biggest age?"
-var regDate = /\d{4}-\d{2}-\d{2}/g;
-// this means digit character that contains 4 characters, "-", digit charater that contain two characters, "-", digit character that contains two characters. Find all occurrences, do not stop at the first 
+var regDate = /\d{4}-\d{2}-\d{2}/;
+// this means digit character that contains 4 characters, "-", digit charater that contain two characters, "-", digit character that contains two characters.
 
 
 /* Check if a string contains letters from A to C */
@@ -1997,3 +1997,325 @@ var regDate = /\d{4}-\d{2}-\d{2}/g;
 // if (AtoC.test('aacczzz')){
 //   console.log('aacczzz has the [a-c character at least once]');
 // }
+
+
+// var AtoK5to9AzAndAAt  = /^[a-k5-9z@]+$/ ;
+
+// var threeToFourConsecutiveA = /[^a]a{3,4}$/;
+// var emailregexp = /[a-z0-9._%+-]+@microsoft\.com/;
+
+//manage to have only good message
+// var emailregexp = /[a-z0-9._%+-]+@microsoft\.(com|nl|fr)/;
+
+
+// var myRegexp = /[a-z0-9._%+-]+@[a-z0-9._%+-]\.com/g;
+
+var myRegExp = /[a-z0-9._%+-]\.(com|nl|fr)/
+
+
+// Reduce Array Helper
+// Compact all of the values in an array down to a single value
+
+function addNumbers(numbers) {
+  return numbers.reduce(function(sum, number) {
+    return sum + number;
+  },0);
+}
+
+// Here you can use a fat arrow function
+
+function addNumbers(numbers) {
+  return numbers.reduce(function(sum, number) => {
+    return sum + number;
+  },0);
+}
+
+addNumbers([1,2,3,4,5]);
+
+// What if you want to pass multiple numbers but they are not in an array
+
+function addNumbers(a,b,c,d,e) {
+  const numbers = (a,b,c,d,e);
+
+  return numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+}
+
+addNumbers(1,2,3,4,5,6,7);
+
+
+
+const numbers = (a,b,c,d,e);
+function addNumbers(...numbers) {
+
+  return numbers.reduce((sum, number) => {
+    return sum + number;
+  }, 0);
+}
+
+addNumbers(1,2,3,4,5,6,7,8,9,10);
+
+
+
+// default colors
+
+const defaultColors = ['red', 'green'];
+const userFavoriteColors = ['orange', 'yellow'];
+
+defaultColors.concat(userFavoriteColors);
+// You can pass in another array and the two arrays can be joined into a single one
+
+[ ...defaultColors, ...userFavoriteColors ];
+
+// Inheritance System
+// Object Orientated Programming
+-- Prototypal Inheritance
+
+function Car(options) {
+  this.title = options.title;
+}
+
+Car.prototype.drive = function() {
+  return 'vroom';
+}
+
+function Toyota(options) {
+  Car.call(this, options);
+  this.color = options.color;
+}
+
+Toyota.prototype = Object.create(Car.prototype);
+Toyota.prototype.constructor = Toyota;
+
+Toyota.prototype.honk = function() {
+  return 'beep';
+}
+
+const toyota = new Toyota({color: 'red', title: 'Daily Driver' });
+toyota;
+toyota.drive();
+toyota.honk();
+
+
+class Car {
+
+}
+
+const car = new Car();
+
+
+// Create an array of numbers
+var numbers = [1,2,3,4,5];
+
+var sum = 0;
+
+
+// array helper methods
+
+forEach
+find
+map
+reduce
+filter
+every
+some
+
+
+forEach helper
+
+var colors = ['red', 'blue', 'green']
+
+for (var i = 0; i < colors.length; i++) {
+  console.log(colors[i]);
+}
+
+colors.forEach(function(color) {
+  console.log(color);
+});
+
+// create an array of numbers
+
+var numbers = [1,2,3,4,5];
+
+// create a variable to hold the sum
+var sum = 0;
+
+// loop over the array incrementing the sum variable
+
+
+// forEach: executes a provided function once for each array element
+numbers.forEach(function(number) {
+  sum += number;
+});
+
+// print the sum variable
+sum;
+
+
+// Map helper method (Creates a new array)
+    // Maps through the array and creates a new array with the results.
+// The map helper method creates a new array with the results of calling a function for every array element.
+// write a loop that iterates over a list of numbers
+
+
+var number = [1,2,3];
+var doubledNumbers = [];
+
+for (var i = 0; i < numbers.length; i++) {
+  doubledNumbers.push(numbers[i] * 2);
+}
+
+doubledNumbers;
+
+
+// print an array
+
+function printArray(array) {
+  for (let i = 0; i < array.length; i++) {
+    return array[i];
+  }
+}
+
+printArray(['a,b,c'])
+
+
+// reverse a string
+
+function reverseString(string) {
+  return string.split('').reverse().join('')
+}
+
+reverseString('hello')
+
+// reverse a string with a for loop
+
+function reverseString(string) {
+  let newString = '';
+
+  for (let i = string.length - 1; i >= 0; i--) {
+    newString += string[i];
+  }
+  return newString;
+}
+
+reverseString('hello')
+
+
+// isPalindrome
+// check if a string is a palindrome
+
+function isPalindrome(string) {
+  if (string === string.split('').reverse().join('')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+isPalindrome('madam')
+
+
+// function repeatify
+
+function repeatify(string, number) {
+  return string.repeat(number);
+}
+repeatify('hello', 3)
+
+
+// repeatify with a for loop
+function repeatify(string, number) {
+  let newString = '';
+
+  for (let i = 0; i < number; i++) {
+    newString += string;
+  }
+  return newString;
+}
+
+repeatify('hello', 3)
+
+
+// find the largest number within an array
+
+function findLargest(array) {
+  let largest = array[0];
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > largest) {
+      largest = array[i];
+    }
+  }
+  return largest;
+}
+
+findLargest([1,2,3,4,5])
+
+// odds/evens
+
+function oddsEvens(array) {
+  let odds = '';
+  let evens = '';
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      evens += array[i];
+    } else {
+      odds += array[i];
+    }
+  }
+ return `${evens}, ${odds}`
+ }
+
+ oddsEvens([1,2,3])
+
+
+ // simple array function
+
+ function arraySum(array) {
+   let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    sum += array[i];
+  }
+  return sum;
+ }
+
+ arraySum([1,2,3,4,5])
+
+// Here is another solution:
+
+ var numbers = [ 10, 20, 30 ];
+ var sum = 0;
+
+ for (var i = 0; i < numbers.length; i++) {
+   sum += numbers[i];
+ }
+
+
+// twoSum
+// find the largest sum within the numbers in an array
+
+function twoSum(array) {
+  let largest = array[0];
+  let smallest = array[0];
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > largest) {
+      largest = array[i];
+    } else if (array[i] < smallest) {
+      smallest = array[i];
+    }
+  }
+  return largest - smallest;
+}
+
+twoSum([1,2,3,4,10]);
+
+
+
+
+
+
+
+
