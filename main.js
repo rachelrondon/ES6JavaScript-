@@ -2283,15 +2283,6 @@ function oddsEvens(array) {
 
  arraySum([1,2,3,4,5])
 
-// Here is another solution:
-
- var numbers = [ 10, 20, 30 ];
- var sum = 0;
-
- for (var i = 0; i < numbers.length; i++) {
-   sum += numbers[i];
- }
-
 
 // twoSum
 // find the largest sum within the numbers in an array
@@ -2312,10 +2303,473 @@ function twoSum(array) {
 
 twoSum([1,2,3,4,10]);
 
+/* What does ES6 really mean? Answer: ECMAScript 6
+  - We are on the 6th version of ECMAScript
+  - ES6 is a standard - JavaScript is an implementation
+  - ES6 Code -> Babel -> ES5 Code
+     - ES6 Code has to be ran by the browser that we are running on.
+     - In practice, we write ES6 code and Babel transpiles it into ES5.
+     - We will continue to use Babel as something that can be safely ran in the browser.
+     - ECMAScript is the standard. JavaScript is the implementation
 
 
+JavaScript - Array Helper Methods
+
+forEach array helper - ITERATE
+  - Applies a function on each member of an array
+  -  When we call forEach on an array, we provide an iterator function that is ran one time for each element within the array.
+map array helper - MODIFY
+  - used to MODIFY records in some list of date
+filter array helper
+  - we take an elemnet out of our source array and pass it to our iterator function
+  - the iterator function either has to return a truthy or a falsy
+  - if it is true, it will be included in the new array. Else, it will not be included in the new array
+find array helper -
+every array helper -
+some array helper -
+reduce array helper
 
 
+Why do we not want to use for loops ???
+- What are the ways that for loops can go wrong ?
+- There are many elements that are prone to typos.
+- The logic that is placed in a single line of code the harder it is for future engineers to come in and read the code.
+
+*/
+
+var colors = ['red', 'blue', 'green'];
+
+for (var i = 0; i < colors.length; i++) {
+  console.log(colors[i]);
+}
+
+colors.forEach(function(color) {
+  console.log(color);
+});
 
 
+/* Map Helper Method
+  - In this example, we want to avoid changing data at all possible
+*/
+
+
+var numbers = [1,2,3];
+var doubledNumbers = [];
+
+for (var i = 0; i < numbers.length; i++) {
+  doubledNumbers.push(numbers[i] * 2);
+}
+
+var doubled = numbers.map(function(number) {
+  // Whatever is returned is placed into a new array
+  // mapping over the numbers array and passing it to the iterator function and returning each number by 2
+  // If you do not include the return function, map will will take this line as undefined
+  return number * 2;
+});
+
+doubled;
+doubledNumbers;
+
+/* Another example of map */
+
+var cars = [
+  { model: "Buick", price: "CHEAP" },
+  { model: 'Camaro', price: 'expensive' }
+];
+
+var prices = cars.map(function(car) {
+  return car.price;
+});
+
+prices;
+
+
+/* Filter helper method */
+
+var products = [
+  { name: 'cucumber', type: 'vegetable', quantity: 0, price: 1 },
+  { name: 'banana', type: 'fruit', quantity: 10, price: 15 },
+  { name: 'celery', type: 'vegetable', quantity: 30, price: 13 },
+  { name: 'orange', type: 'fruit', quantity: 3, price: 5 }
+];
+
+var filteredProducts = [];
+
+for (var i = 0; i < products.length; i++) {
+  if (products[i].type === 'fruit') {
+    filteredProducts.push(products[i]);
+  }
+}
+
+filteredProducts;
+
+// this will return all of the products that are vegetables
+products.filter(function(product) {
+  return product.type === 'vegetable';
+});
+
+/* Another filter method */
+
+products.filter(function(product) {
+  return product.type === 'vegetable'
+            && product.quantity > 0
+            && product.price < 10
+});
+
+/* Another filter method */
+
+
+function commentsForPost(post, comments) {
+  return comments.filter(function(comment) {
+    return comment.postId === post.id;
+  });
+}
+
+commmentsForPost(post, comments);
+
+
+/* Array Helper Methods - forEach - filter
+  - makes it easier to work with a collection of data
+  - Also, helps you avoid writing traditional for loops
+
+  forEach - when you call forEach on an array, you provide an iterator function that is called one time on each element in an array.
+*/
+
+var colors = ['red', 'blue', 'green'];
+
+colors.forEach((color) => {
+  console.log(color);
+});
+
+
+// Create an array of numbers //
+let numbers = [1,2,3,4,5];
+// Create a variable to hold the sum //
+let sum = 0;
+// Loop over the array, incrementing the sum variable //
+numbers.forEach((number) => {
+  sum += number;
+});
+// print the sum variable
+sum;
+
+
+/* Here is another way to write this function */
+/* For every element in the array, we run the function one time */
+
+var numbers = [1,2,3,4,5];
+
+var sum = 0;
+
+adder = (number) => {
+  sum += number;
+};
+
+numbers.forEach(adder);
+
+sum;
+
+/* forEach */
+/* When you want to call one method multiple times */
+
+/* Map - Array Helper Method */
+
+let numbers = [1,2,3];
+let doubledNumbers = [];
+/* In an array; use .push */
+/* With a string, use += */
+
+for (let i = 0; i < numbers.length; i++) {
+  doubledNumbers.push(numbers[i] * 2);
+}
+
+doubledNumbers;
+
+/* With the map helper method */
+let numbers = [1,2,3];
+
+let doubled = numbers.map((number) => {
+  return number * 2;
+});
+
+doubled;
+
+/* Whatever is returned from a map function - it is placed within a new array */
+/* Map creates a new array */
+/* Use the map helper to create a new array */
+/* We are not changing the existing array - we are creating a new one */
+/* The return keyword is very important */
+
+
+let cars = [
+  { model: 'Buick', price: 'CHEAP'},
+  { model: 'Camaro', price: 'expensive'}
+]
+
+var prices = cars.map((car) => {
+  return car.price;
+});
+
+/* Filter - Array helper method */
+/* The new array creates a subset of all the data that we have */
+/* The subset should only have fruits */
+
+let products = [
+  { name: 'cucumber', type: 'vegetable', quantity: 0, price: 1},
+  { name: 'banana', type: 'fruit', quantity: 10, price: 15},
+  { name: 'celery', type: 'vegetable', quantity: 20, price: 9},
+  { name: 'orange', type: 'fruit', quantity: 3, price: 5}
+];
+
+let filteredProducts = [];
+
+for (let i = 0; i < products.length; i++) {
+  if (products[i].type === 'fruit') {
+    filteredProducts.push(products[i]);
+  }
+}
+filteredProducts;
+
+/* Filter helper method */
+/* If the value is truthy - it will be included in the new array */
+/* If the value is falsy - then it will not be included within the new array */
+
+products.filter((product) => {
+  return product.type === 'fruit';
+});
+
+/* you do not need to use an if statement to produce a truthy or falsy value */
+products.filter((product) => {
+  return product.type === 'vegetable';
+});
+/* You need to include the return statement with this! */
+
+// Type is 'vegetable', quantity is greater than 0, price is less than 10 //
+products.filter((product) => {
+  return product.type === 'vegetable' && product.quantity > 0 && product.price < 10
+});
+
+/* Given a post, we want to return a list of all the comments associated with that post */
+commentsForPost((post, comments) => {
+  return comments.filter((comment) => {
+    return comment.postId === post.id;
+  });
+});
+commentsForPost(post, comments)
+
+/* Return a list of all the comments associated with a post */
+
+let posts = { id: 4, title: 'New Post'};
+
+var commnets = [
+  { postId: 4, content: 'awsome post'},
+  { postId: 3, content: 'it was ok'},
+  { postId: 4, content: 'neat'}
+];
+
+commentsForPost = (post, comments) => {
+ return comments.filter((comment) => {
+   return comment.postId === post.id;
+ });
+}
+
+commentsForPost(post, comments);
+
+
+/* Find - Array Helper Method */
+let users = [
+  { name: 'Jill' },
+  { name: 'Alex' },
+  { name: 'Bill' },
+  { name: 'Alex' }
+];
+
+let user;
+for (let i = 0; i < users.length; i++) {
+  if (users[i].name === 'Alex') {
+    user = users[i];
+  }
+}
+user;
+
+/* find - array helper method */
+/* Walk through every item in the array -
+for each element - it is passed into an iterator function */
+
+user.find((user) => {
+  return user.name === 'Alex';
+})
+
+/* if two are true - then only the first will be returned */
+
+function Car(model) {
+  this.model = model;
+}
+
+let cars = [
+  new Car('Buick'),
+  new Car('Camaro'),
+  new Car('Focus')
+];
+
+cars.find((car) => {
+  return car.model === 'Focus';
+});
+
+//
+
+let posts = [
+  { id: 1, title: 'New post' },
+  { id: 2, title: 'Old post' }
+];
+
+var comment = { postId: 1, conent: 'Great post' };
+
+postForComment = (posts, comment) => {
+  return posts.find((post) => {
+    return post.id === comment.postId;
+  });
+}
+
+postForComment(posts, commnet);
+
+/* Every and some */
+
+let computers = [
+  { name: 'Apple', ram: 24 },
+  { name: 'Compaq', ram: 4 },
+  { name: 'Acer', ram: 32 }
+];
+
+let allComputersCanRunProgram = true;
+let onlySomeComputersCanRunProgram = false;
+
+for (let i = 0; i < computers.length; i++) {
+  let computer = computers[i];
+
+  if (computer.ram < 16) {
+    allComputersCanRunProgram = false;
+  } else {
+    onlySomeComputersCanRunProgram = true;
+  }
+}
+
+'----'
+
+allComputersCanRunProgram;
+onlySomeComputersCanRunProgram;
+
+computers.every((computer) => {
+  return computer.ram > 16;
+});
+
+/* With every, all of the elements have to return a truthy. If there is one falsy, then it would be false */
+/* Some helper - do any records satisfy this criteria ? */
+
+computers.some((computer) => {
+  return computer.ram > 16;
+});
+
+/* Every + Some helper methods */
+
+let names = [
+  "Alexandria",
+  'Matthew',
+  "Joe"
+];
+
+names.every((name) => {
+  return name.length > 4;
+});
+/* This returns false */
+
+let names = [
+  "Alexandria",
+  'Matthew',
+  "Joe"
+];
+
+names.some((name) => {
+  return name.length > 4;
+});
+/* This returns true */
+
+
+function Field(value) {
+  this.value = value;
+}
+
+Field.prototype.validate = function() {
+  return this.value.length > 0;
+};
+
+let username = new Field('2cool');
+let password = new Field('my_password');
+let birthdate = new Field('10/10/2010');
+
+let fields = [username, password, birthdate];
+
+let formIsValid = fields.every((field) => {
+  return field.validate();
+});
+
+
+/* Reduce - array helper method */
+
+let numbers = [ 10, 20, 30 ];
+let sum = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+  sum += numbers[i];
+}
+
+/* With reduce, you pass in an initial value */
+
+numbers.reduce((sum, number) => {
+  return sum + number;
+
+}, 0);
+
+/* Reduce function - condensing down the entire array of elements to a single value */
+
+let primaryColors = [
+  { color: 'red' },
+  { color: 'yellow' },
+  { color: 'blue' }
+];
+
+/* previous is defined as an array based on the initial value */
+
+primaryColors.reduce((previous, primaryColor) => {
+  previous.push(primaryColor.color);
+
+  return previous;
+
+}, []);
+
+/* Practical use cases of the reduce helper */
+
+/* We want a function that takes a string and returns a boolean */
+
+/*
+  Question: Balanced parathesis - Given a string of characters;
+  write a function that decides whether or not the parenthesis are balanced
+*/
+
+/* We want a function that takes a string and returns a boolean */
+
+balancedParens = (string) => {
+  return !string.split('').reduce((previous, character) => {
+    if (previous < 0) {
+      return previous;
+    }
+    if (character === '(') {
+      return ++previous;
+    } if (character === ')') {
+      return --previous
+    } return previous;
+  }, 0);
+}
+
+balancedParens('()()()()()');
 
